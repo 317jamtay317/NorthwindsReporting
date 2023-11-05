@@ -1,17 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using DAL;
+using Northwinds.Core.Extensions;
+using Prism.Ioc;
 
 namespace Northwinds
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App 
     {
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterServices();
+            containerRegistry.RegisterViews();
+            containerRegistry.RegisterDAL();
+        }
+
+        protected override Window CreateShell()
+        {
+            return Container.Resolve<MainWindow>();
+        }
     }
 }
