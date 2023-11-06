@@ -14,8 +14,65 @@
         Title="{Binding Title}" Height="700" Width="1100"
         d:DataContext="{d:DesignInstance {x:Type local:MainWindowViewModel}}"
         xmlns:prism="http://prismlibrary.com/"
-        prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-        
-    </Grid>
+        xmlns:p="clr-namespace:Northwinds.Core.Prism"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModels="clr-namespace:Northwinds.ViewModels"
+        xmlns:shared="clr-namespace:Shared;assembly=Shared"
+        WindowStyle="None"
+        x:Name="root"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Padding="0">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TabHeaderTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding DataContext.Header}" HorizontalAlignment="Left"/>
+                    <Button Grid.Column="1" 
+                            Style="{StaticResource CloseButtonStyle}"></Button>
+                </Grid>
+            </DataTemplate>
+            <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                <Setter Property="HeaderTemplate" Value="{StaticResource TabHeaderTemplate}" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <Border DockPanel.Dock="Top"
+                MouseDown="HandleMouseDown"
+                MinHeight="30"
+                Background="{DynamicResource PrimaryHueLightBrush}">
+            <Grid>
+                <TextBlock Text="{Binding ElementName=root, Path=Title}"
+                           HorizontalAlignment="Left"
+                           Foreground="{DynamicResource SecondaryHueLightForegroundBrush}"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center" />
+                <Button HorizontalAlignment="Right"
+                        Click="HandleClose"
+                        Style="{StaticResource CloseButtonWithHoverStyle}"/>
+            </Grid>
+        </Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="310" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Column="0"
+                            Margin="0 0 10 0"
+                            prism:RegionManager.RegionName="{x:Static shared:Regions.LeftRegion}"/>
+            <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="10" Background="{StaticResource MaterialDesignLightBackground}"/>
+            <TabControl Grid.Column="1" 
+                        prism:RegionManager.RegionName="{x:Static shared:Regions.TabRegion}" 
+                        ItemTemplate="{StaticResource TabHeaderTemplate}"></TabControl>
+        </Grid>
+    </DockPanel>
 </Window>

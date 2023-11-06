@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Prism.Mvvm;
 
-namespace Northwinds.Core.Mvvm;
+namespace Shared.Mvvm;
 
 public abstract class ViewModelBase : BindableBase 
 {

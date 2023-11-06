@@ -8,9 +8,4 @@ public static class ContainerRegistryExtensions
     {
         
     }
-
-    public static void RegisterViews(this IContainerRegistry containerRegistry)
-    {
-        
-    }
 }
