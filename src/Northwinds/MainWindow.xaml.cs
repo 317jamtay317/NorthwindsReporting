@@ -24,5 +24,18 @@ namespace Northwinds
         {
             InitializeComponent();
         }
+
+        private void HandleMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void HandleClose(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

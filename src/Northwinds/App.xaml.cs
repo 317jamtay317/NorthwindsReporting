@@ -1,7 +1,12 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using DAL;
 using Northwinds.Core.Extensions;
+using Northwinds.Core.Prism;
 using Prism.Ioc;
+using Prism.Modularity;
+using Prism.Regions;
+using Reports;
 
 namespace Northwinds
 {
@@ -13,8 +18,19 @@ namespace Northwinds
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterServices();
-            containerRegistry.RegisterViews();
             containerRegistry.RegisterDAL();
+        }
+
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        {
+            base.ConfigureRegionAdapterMappings(regionAdapterMappings);
+            regionAdapterMappings.RegisterMapping(typeof(TabControl), Container.Resolve<TabControlAdapter>());
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            base.ConfigureModuleCatalog(moduleCatalog);
+            moduleCatalog.AddModule(typeof(ReportsModule), InitializationMode.WhenAvailable);
         }
 
         protected override Window CreateShell()
