@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-using Northwinds.Core.Prism;
-using Prism.Commands;
+﻿using Northwinds.Core.Prism;
 using Prism.Regions;
 using Shared;
 using Shared.Mvvm;

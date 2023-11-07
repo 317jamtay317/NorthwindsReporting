@@ -9,8 +9,18 @@
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance {x:Type viewModels:LeftMenuViewModel}}"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:theme="clr-namespace:Theme;assembly=Theme"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <ItemsControl></ItemsControl>
+        <local:LeftMenuItem Grid.Row="1"
+            Padding="10 6"
+            IconSize="25"
+             Label="Configure"
+             Glyph="Cog"/>
     </Grid>
 </UserControl>

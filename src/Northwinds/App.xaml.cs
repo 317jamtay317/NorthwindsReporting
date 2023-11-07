@@ -38,6 +38,7 @@ namespace Northwinds
             base.OnInitialized();
 
             await Container.InitDALAsync();
+            Container.RegisterViews();
         }
 
         protected override Window CreateShell()
