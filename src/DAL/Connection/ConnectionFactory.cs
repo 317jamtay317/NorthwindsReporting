@@ -8,7 +8,7 @@ internal class ConnectionFactory:IConnectionFactory
     public async Task<IDbConnection> CreateAsync()
     {
         //the connection string normally would be in appsettings and configurable 
-        var connection = new SqliteConnection("Data Source=northwind.db;Version=3;");
+        var connection = new SqliteConnection("Data Source=.\\northwind.db");
         await connection.OpenAsync();
         return connection;
     }

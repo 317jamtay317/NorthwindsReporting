@@ -29,17 +29,28 @@
     </b:Interaction.Triggers>
     <Window.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Key="TabHeaderTemplate">
+            <DataTemplate
+                x:Key="TabHeaderTemplate">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition
+                            Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding DataContext.Header}" HorizontalAlignment="Left"/>
-                    <Button Grid.Column="1" 
-                            Style="{StaticResource CloseButtonStyle}"></Button>
+                    <TextBlock
+                        Text="{Binding DataContext.Header}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left" />
+                    <Button
+                        Grid.Column="1"
+                        Style="{StaticResource CloseButtonStyle}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Margin="20 0 0 0"
+                        HorizontalAlignment="Right" />
                 </Grid>
             </DataTemplate>
+
             <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
                 <Setter Property="HeaderTemplate" Value="{StaticResource TabHeaderTemplate}" />
             </Style>
@@ -58,6 +69,7 @@
                            VerticalAlignment="Center" />
                 <Button HorizontalAlignment="Right"
                         Click="HandleClose"
+                        Padding="8 5"
                         Style="{StaticResource CloseButtonWithHoverStyle}"/>
             </Grid>
         </Border>

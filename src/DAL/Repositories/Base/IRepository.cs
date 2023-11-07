@@ -3,11 +3,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Base
 {
+    public interface IRepository{}
+
     /// <summary>
     /// A generic repository interface defines the standard operations to be performed on a model.
     /// </summary>
     /// <typeparam name="T">The type of the model that this repository will operate on.</typeparam>
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> : IRepository
+        where T : class
     {
         /// <summary>
         /// Retrieves the entity of type T by its identifier asynchronously.

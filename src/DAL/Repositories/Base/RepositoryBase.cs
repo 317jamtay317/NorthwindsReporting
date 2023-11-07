@@ -3,7 +3,9 @@ using Dapper;
 
 namespace DAL.Repositories.Base;
 
-internal abstract class RepositoryBase<T> : IRepository<T>
+internal abstract class RepositoryBase{}
+
+internal abstract class RepositoryBase<T> : RepositoryBase, IRepository<T>
     where T : class
 {
     protected IConnectionFactory ConnectionFactory { get; }

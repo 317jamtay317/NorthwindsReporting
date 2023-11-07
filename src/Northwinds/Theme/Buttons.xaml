@@ -10,10 +10,13 @@
                             Margin="{TemplateBinding Margin}"
                             x:Name="Border"
                             Background="{TemplateBinding Background}">
-                        <materialDesign:PackIcon VerticalAlignment="Center"
-                                                 Margin="0 0 10 0"
-                                                 Kind="Close"
-                                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"/>
+                        <Grid>
+                            <materialDesign:PackIcon VerticalAlignment="Center"
+                                                     Kind="Close"
+                                                     HorizontalAlignment="Center"
+                                                     HorizontalContentAlignment="Center"
+                                                     Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                            </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

@@ -33,6 +33,13 @@ namespace Northwinds
             moduleCatalog.AddModule(typeof(ReportsModule), InitializationMode.WhenAvailable);
         }
 
+        protected override async void OnInitialized()
+        {
+            base.OnInitialized();
+
+            await Container.InitDALAsync();
+        }
+
         protected override Window CreateShell()
         {
             return Container.Resolve<MainWindow>();
