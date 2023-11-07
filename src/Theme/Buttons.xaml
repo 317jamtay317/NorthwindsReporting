@@ -21,12 +21,21 @@
                             <materialDesign:PackIcon VerticalAlignment="Center"
                                 Kind="{TemplateBinding root:Buttons.Glyph}"
                                 HorizontalAlignment="Center"
+                                x:Name="Icon"
                                 HorizontalContentAlignment="Center"
                                 Height="{TemplateBinding Height}"
                                 Width="{TemplateBinding Width}"
                                 Foreground="{TemplateBinding Foreground}" />
                         </Grid>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter
+                                TargetName="Icon"
+                                Property="Foreground"
+                                Value="{DynamicResource PrimaryHueMidBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

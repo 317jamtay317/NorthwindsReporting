@@ -10,17 +10,30 @@
              d:DataContext="{d:DesignInstance {x:Type viewModels:LeftMenuViewModel}}"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:theme="clr-namespace:Theme;assembly=Theme"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ItemsControl></ItemsControl>
-        <local:LeftMenuItem Grid.Row="1"
+        <b:Interaction.Behaviors>
+            <behaviors:GridBehavior 
+                RowString="auto,*,auto"/>
+        </b:Interaction.Behaviors>
+       
+        <Grid>
+            <b:Interaction.Behaviors>
+                <behaviors:GridBehavior
+                    ColumnsString="auto,*,auto"/>
+            </b:Interaction.Behaviors>
+
+        </Grid>
+
+        <TreeView Grid.Row="1" />
+
+        <local:LeftMenuItem Grid.Row="2"
             Padding="10 6"
             IconSize="25"
              Label="Configure"
-             Glyph="Cog"/>
+             Glyph="Cog"
+            />
     </Grid>
 </UserControl>

@@ -8,7 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Configure\Configure.csproj" />
       <ProjectReference Include="..\DAL\DAL.csproj" />
+      <ProjectReference Include="..\Models\Models.csproj" />
       <ProjectReference Include="..\Reports\Reports.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
       <ProjectReference Include="..\Theme\Theme.csproj" />

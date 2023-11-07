@@ -16,6 +16,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:shared="clr-namespace:Shared;assembly=Shared"
+        xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
         WindowStyle="None"
         x:Name="root"
         prism:ViewModelLocator.AutoWireViewModel="True"
@@ -30,11 +31,9 @@
             <DataTemplate
                 x:Key="TabHeaderTemplate">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition
-                            Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                    <b:Interaction.Behaviors>
+                        <behaviors:GridBehavior ColumnsString="auto,*"/>
+                    </b:Interaction.Behaviors>
                     <TextBlock
                         Text="{Binding DataContext.Header}"
                         VerticalAlignment="Bottom"
@@ -72,10 +71,9 @@
             </Grid>
         </Border>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="310" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+            <b:Interaction.Behaviors>
+                <behaviors:GridBehavior ColumnsString="310,*,*"/>
+            </b:Interaction.Behaviors>
             <ContentControl Grid.Column="0"
                             Margin="0 0 10 0"
                             prism:RegionManager.RegionName="{x:Static shared:Regions.LeftRegion}"/>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Configure;
 using DAL;
 using Northwinds.Core.Extensions;
 using Northwinds.Core.Prism;
@@ -31,6 +32,7 @@ namespace Northwinds
         {
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule(typeof(ReportsModule), InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule(typeof(ConfigureModule), InitializationMode.WhenAvailable);
         }
 
         protected override async void OnInitialized()

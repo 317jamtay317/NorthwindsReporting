@@ -14,32 +14,46 @@
     >
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="Button">
+            <Style TargetType="Button" BasedOn="{StaticResource IconButton}">
                 <Setter Property="IsEnabled" Value="{Binding ElementName=root, Path=IsEnabled}"/>
+                <Setter Property="Foreground" Value="{Binding ElementName=root, Path=Foreground}"/>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding ElementName=root, Path=IsMouseOver}"
+                        Value="True">
+                        <Setter
+                            Property="Foreground"
+                            Value="{DynamicResource PrimaryHueMidBrush}"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
             </Style>
             <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{Binding ElementName=root, Path=Foreground}"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding ElementName=root, Path=IsEnabled}"
                         Value="True">
                         <Setter Property="Foreground" Value="DarkGray"/>
                     </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=root, Path=IsMouseOver}" Value="True">
+                        <Setter
+                            Property="Foreground"
+                            Value="{DynamicResource PrimaryHueMidBrush}"></Setter>
+                    </DataTrigger>
                 </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border>
+    <Border Background="Transparent">
         <StackPanel Orientation="Horizontal">
-            <Button Style="{StaticResource IconButton}"
+            <Button 
                 theme:Buttons.Glyph="{Binding ElementName=root, Path=Glyph}"
                 MouseLeftButtonDown="HandleLeftMouseButtonUp"
-                Foreground="{Binding ElementName=root, Path=Foreground}"
                 Height="{Binding ElementName=root, Path=IconSize}"
                 Width="{Binding ElementName=root, Path=IconSize}"
                 VerticalAlignment="Center"/>
             <TextBlock Margin="10 0 0 0" Text="Configure"
                 MouseLeftButtonDown="HandleLeftMouseButtonUp"
                 VerticalAlignment="Center"
-                Foreground="{Binding ElementName=root, Path=Foreground}"
                 FontSize="{Binding ElementName=root, Path=FontSize}"/>
         </StackPanel>
     </Border>

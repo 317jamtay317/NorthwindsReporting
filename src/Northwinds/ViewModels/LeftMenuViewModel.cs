@@ -1,5 +1,7 @@
-﻿using Prism.Events;
+﻿using System.Windows.Input;
+using Prism.Commands;
 using Prism.Regions;
+using Shared;
 using Shared.Mvvm;
 
 namespace Northwinds.ViewModels;
@@ -7,13 +9,21 @@ namespace Northwinds.ViewModels;
 public class LeftMenuViewModel : ViewModelBase
 {
     public LeftMenuViewModel(
-        IEventAggregator eventAggregator,
         IRegionManager regionManager)
     {
-        _eventAggregator = eventAggregator;
         _regionManager = regionManager;
+        NavigationCommand = new DelegateCommand<string>(Navigate);
     }
-    
-    private readonly IEventAggregator _eventAggregator;
+
+    private void Navigate(string view)
+    {
+        _regionManager.RequestNavigate(Regions.TabRegion, view);
+    }
+
+    /// <summary>
+    /// Command to Add a view to the tabs
+    /// </summary>
+    public ICommand NavigationCommand { get; }
+
     private readonly IRegionManager _regionManager;
 }
