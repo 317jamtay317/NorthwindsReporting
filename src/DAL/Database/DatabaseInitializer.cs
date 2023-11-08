@@ -19,7 +19,7 @@ namespace DAL.Database
                             Name TEXT NOT NULL,
                             Description TEXT,
                             ReportType INT NOT NULL,
-                            Query TEXT NOT NULL
+                            QueryId INT NOT NULL
                         );";
             var fieldsTable = @"
                 CREATE TABLE IF NOT EXISTS ReportFields (
@@ -29,12 +29,20 @@ namespace DAL.Database
                 FOREIGN KEY (ReportDefinitionId) REFERENCES ReportDefinitations (Id)
                 );
             ";
+            var queryTable = @"
+            CREATE TABLE IF NOT EXISTS StoredQueries (
+            Id INTEGER PRIMARY KEY,
+            Name TEXT NOT NULL,
+            Sql TEXT NOT NULL
+            )
+            ";
             using var connection = await _connectionFactory.CreateAsync();
             var transaction = connection.BeginTransaction();
             try
             {
                 await connection.ExecuteAsync(reportsTable, transaction);
                 await connection.ExecuteAsync(fieldsTable, transaction);
+                await connection.ExecuteAsync(queryTable, transaction);
                 transaction.Commit();
             }
             catch (Exception e)

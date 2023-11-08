@@ -30,7 +30,7 @@
                 <views:LeftMenuItem Label="Form Report Builder" 
                                     Glyph="Form" 
                                     CommandParameter="{x:Static core:ViewNames.FormReportBuilder}"/>
-                <views:LeftMenuItem Label="Query Builder" 
+                <views:LeftMenuItem Label="StoredQuery Builder" 
                                     Glyph="QueryBuilder" 
                                     CommandParameter="{x:Static core:ViewNames.QueryBuilder}"/>
             </StackPanel>

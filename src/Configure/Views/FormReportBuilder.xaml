@@ -4,9 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Configure.Views"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
+             xmlns:viewModels="clr-namespace:Configure.ViewModels"
+             xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance {x:Type viewModels:FormReportBuilderViewModel}}"
+             prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <TextBlock Text="Form Report Builder"></TextBlock>
+        <b:Interaction.Behaviors>
+            <behaviors:GridBehavior RowString="Auto,*"/>
+        </b:Interaction.Behaviors>
+        <Grid Grid.Row="0">
+            <b:Interaction.Behaviors>
+                <behaviors:GridBehavior RowString="*,*,*" ColumnsString="*,*"/>
+            </b:Interaction.Behaviors>
+            <TextBlock Text="StoredQuery" Grid.Row="0" 
+                       Grid.Column="0"  
+                       Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Queries}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding QueryId}"/>
+        </Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Grid.Row="1"
+                      HorizontalScrollBarVisibility="Hidden">
+            <ItemsControl></ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

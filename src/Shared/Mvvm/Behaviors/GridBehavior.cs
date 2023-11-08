@@ -39,7 +39,7 @@ public class GridBehavior : Behavior<Grid>
         UpdateColumns();
         UpdateRows();
     }
-
+    
     private void UpdateRows()
     {
         UpdateGrid<RowDefinition>(
@@ -58,7 +58,7 @@ public class GridBehavior : Behavior<Grid>
 
     private static void ColumnsChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is GridBehavior{AssociatedObject:Grid} behavior)
+        if (d is GridBehavior{AssociatedObject:not null} behavior)
         {
             if (behavior.ColumnsString == e.OldValue?.ToString())
             {
@@ -71,7 +71,7 @@ public class GridBehavior : Behavior<Grid>
 
     private static void RowsChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is GridBehavior{AssociatedObject:Grid} behavior)
+        if (d is GridBehavior{AssociatedObject:not null} behavior)
         {
             if (behavior.RowString == e.OldValue?.ToString())
             {
@@ -140,6 +140,5 @@ public class GridBehavior : Behavior<Grid>
         return lengths.ToArray();
     }
 
-    private readonly static Regex MultipleStars = new(@"([0-9]+)\*");
-    private readonly static Regex MultipleNumbers = new(@"([0-9]+)\*");
+    private static readonly Regex MultipleStars = new(@"([0-9]+)\*");
 }
