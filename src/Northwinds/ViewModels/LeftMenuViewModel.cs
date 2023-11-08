@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using Configure.Views;
 using Prism.Commands;
 using Prism.Regions;
 using Shared;
@@ -17,7 +19,8 @@ public class LeftMenuViewModel : ViewModelBase
 
     private void Navigate(string view)
     {
-        _regionManager.RequestNavigate(Regions.TabRegion, view);
+        var region = _regionManager.Regions[Regions.TabRegion];
+        _regionManager.RequestNavigate(Regions.TabRegion, new Uri(nameof(ConfigureHost), UriKind.Relative));
     }
 
     /// <summary>

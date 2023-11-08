@@ -12,6 +12,8 @@
              xmlns:theme="clr-namespace:Theme;assembly=Theme"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
+             xmlns:views="clr-namespace:Shared.Views;assembly=Shared"
+             xmlns:core="clr-namespace:Northwinds.Core.Prism"
              x:Name="root"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
@@ -60,11 +62,13 @@
         
         <TreeView Grid.Row="1" />
 
-        <local:LeftMenuItem Grid.Row="2"
+        <views:LeftMenuItem Grid.Row="2"
             Padding="10 6"
             IconSize="25"
             Label="Configure"
             Glyph="Cog"
+            Command="{Binding NavigationCommand}"
+            CommandParameter="{x:Static core:ViewNames.ConfigureHost}"
             LabelVisibility="{Binding ElementName=root, 
                 Path=IsExpanded, 
                 Converter={StaticResource BooleanToVisibilityConverter}}"/>

@@ -1,4 +1,6 @@
-﻿using Northwinds.Views;
+﻿using Configure.Views;
+using Northwinds.Core.Prism;
+using Northwinds.Views;
 using Prism.Ioc;
 using Prism.Regions;
 using Shared;
@@ -9,7 +11,6 @@ public static class ContainerRegistryExtensions
 {
     public static void RegisterServices(this IContainerRegistry containerRegistry)
     {
-        
     }
 
     public static void RegisterViews(this IContainerProvider container)

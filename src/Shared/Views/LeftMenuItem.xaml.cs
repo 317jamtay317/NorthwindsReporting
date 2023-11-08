@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 
-namespace Northwinds.Views;
+namespace Shared.Views;
 
 public partial class LeftMenuItem : UserControl
 {
