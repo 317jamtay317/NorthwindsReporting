@@ -53,6 +53,7 @@
                 VerticalAlignment="Center"/>
             <TextBlock Margin="10 0 0 0" Text="Configure"
                 MouseLeftButtonDown="HandleLeftMouseButtonUp"
+                Visibility="{Binding ElementName=root, Path=LabelVisibility}"
                 VerticalAlignment="Center"
                 FontSize="{Binding ElementName=root, Path=FontSize}"/>
         </StackPanel>

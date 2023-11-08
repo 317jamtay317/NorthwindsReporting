@@ -40,6 +40,36 @@ public partial class LeftMenuItem : UserControl
         typeof(string),
         typeof(LeftMenuItem), new PropertyMetadata(default(string)));
 
+    public static readonly DependencyProperty IconSizeProperty = DependencyProperty.Register(
+        nameof(IconSize), 
+        typeof(double),
+        typeof(LeftMenuItem),
+        new PropertyMetadata(20.0));
+
+    public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register(
+        nameof(Glyph), 
+        typeof(PackIconKind),
+        typeof(LeftMenuItem),
+        new (default(PackIconKind)));
+
+    public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
+        nameof(Command), 
+        typeof(ICommand),
+        typeof(LeftMenuItem),
+        new PropertyMetadata(default(ICommand), CommandCallback));
+
+    public static readonly DependencyProperty LabelVisibilityProperty = DependencyProperty.Register(
+        nameof(LabelVisibility),
+        typeof(Visibility), 
+        typeof(LeftMenuItem), 
+        new PropertyMetadata(Visibility.Visible));
+
+    public Visibility LabelVisibility
+    {
+        get => (Visibility)GetValue(LabelVisibilityProperty);
+        set => SetValue(LabelVisibilityProperty, value);
+    }
+
     /// <summary>
     /// the label that you'd like to display
     /// </summary>
@@ -49,12 +79,6 @@ public partial class LeftMenuItem : UserControl
         set => SetValue(LabelProperty, value);
     }
 
-    public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register(
-        nameof(Glyph), 
-        typeof(PackIconKind),
-        typeof(LeftMenuItem),
-        new (default(PackIconKind)));
-
     /// <summary>
     /// the icon
     /// </summary>
@@ -63,12 +87,6 @@ public partial class LeftMenuItem : UserControl
         get => (PackIconKind)GetValue(GlyphProperty);
         set => SetValue(GlyphProperty, value);
     }
-
-    public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
-        nameof(Command), 
-        typeof(ICommand),
-        typeof(LeftMenuItem),
-        new PropertyMetadata(default(ICommand), CommandCallback));
 
     /// <summary>
     /// the command fired when clicked
@@ -87,12 +105,6 @@ public partial class LeftMenuItem : UserControl
         get => (object)GetValue(CommandParameterProperty);
         set => SetValue(CommandParameterProperty, value);
     }
-
-    public static readonly DependencyProperty IconSizeProperty = DependencyProperty.Register(
-        nameof(IconSize), 
-        typeof(double),
-        typeof(LeftMenuItem),
-        new PropertyMetadata(20.0));
 
     public double IconSize
     {

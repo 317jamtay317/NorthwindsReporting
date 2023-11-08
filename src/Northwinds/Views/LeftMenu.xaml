@@ -12,28 +12,63 @@
              xmlns:theme="clr-namespace:Theme;assembly=Theme"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
+             x:Name="root"
+             MouseEnter="HanldeMouseChange"
+             MouseLeave="HanldeMouseChange"
              prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ToggleButton"
+                BasedOn="{StaticResource IconButton}"
+                x:Key="PinButton">
+                <Setter Property="theme:Buttons.Glyph" Value="PinOff" />
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="False">
+                        <Setter Property="theme:Buttons.Glyph" Value="Pin"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <b:Interaction.Behaviors>
-            <behaviors:GridBehavior 
-                RowString="auto,*,auto"/>
+            <behaviors:GridBehavior RowString="auto,*,auto"/>
         </b:Interaction.Behaviors>
        
-        <Grid>
+        <Grid Grid.Row="0">
             <b:Interaction.Behaviors>
-                <behaviors:GridBehavior
-                    ColumnsString="auto,*,auto"/>
+                <behaviors:GridBehavior ColumnsString="auto,*,auto"/>
             </b:Interaction.Behaviors>
-
+            <ToggleButton Style="{StaticResource IconButton}"
+                theme:Buttons.Glyph="Menu"
+                Height="35"
+                HorizontalAlignment="Center"
+                Foreground="White"
+                Grid.Column="0"
+                Margin="5 0"
+                IsChecked="{Binding ElementName=root, Path=IsExpanded, Mode=TwoWay}"
+                Width="35" />
+            <ToggleButton
+                Style="{StaticResource PinButton}"
+                IsChecked="{Binding ElementName=root, Path=IsExpanded, Mode=TwoWay}"
+                Foreground="White"
+                Height="15"
+                Visibility="{Binding ElementName=root, Path=IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Grid.Column="2"
+                Width="15" />
         </Grid>
-
+        
+        
         <TreeView Grid.Row="1" />
 
         <local:LeftMenuItem Grid.Row="2"
             Padding="10 6"
             IconSize="25"
-             Label="Configure"
-             Glyph="Cog"
-            />
+            Label="Configure"
+            Glyph="Cog"
+            LabelVisibility="{Binding ElementName=root, 
+                Path=IsExpanded, 
+                Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>

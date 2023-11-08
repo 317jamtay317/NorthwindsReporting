@@ -72,7 +72,7 @@
         </Border>
         <Grid>
             <b:Interaction.Behaviors>
-                <behaviors:GridBehavior ColumnsString="310,*,*"/>
+                <behaviors:GridBehavior ColumnsString="auto,*"/>
             </b:Interaction.Behaviors>
             <ContentControl Grid.Column="0"
                             Margin="0 0 10 0"

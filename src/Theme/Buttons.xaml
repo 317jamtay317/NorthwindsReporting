@@ -5,14 +5,14 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style TargetType="Button" x:Key="IconButton">
+    <Style TargetType="ButtonBase" x:Key="IconButton">
         <Setter Property="Height" Value="20" />
         <Setter Property="Width" Value="20" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
         <Setter Property="Template" >
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="ButtonBase">
                     <Border Padding="{TemplateBinding Padding}"
                         Margin="{TemplateBinding Margin}"
                         x:Name="Border"
