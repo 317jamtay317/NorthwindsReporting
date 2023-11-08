@@ -52,6 +52,7 @@ public partial class LeftMenu : UserControl
         {
             return;
         }
+        NameScope.SetNameScope(this, new NameScope());
         _expandingInProgress = true;
         var animation = new DoubleAnimation
         {
@@ -63,16 +64,29 @@ public partial class LeftMenu : UserControl
         {
             animation.From = SmallSize;
             animation.To = ExpandedSize;
+            IsExpanded = true;
         }
         else
         {
+            IsExpanded = false;
             animation.From = ExpandedSize;
             animation.To = SmallSize;
         }
 
         _widthStoryboard = new Storyboard();
-        _widthStoryboard.BeginAnimation(WidthProperty, animation);
+        _widthStoryboard.Completed += HandleStoryboardCompleted;
+        Storyboard.SetTargetName(animation, Name);
+        Storyboard.SetTargetProperty(animation, new PropertyPath(WidthProperty));
+        _widthStoryboard.Children.Add(animation);
+        _widthStoryboard.Begin();
 
+    }
+
+    private void HandleStoryboardCompleted(object? sender, EventArgs e)
+    {
+        _expandingInProgress = false;
+        _widthStoryboard!.Completed -= HandleStoryboardCompleted;
+        _widthStoryboard = null;
     }
 
     private void HanldeMouseChange(object sender, MouseEventArgs e)

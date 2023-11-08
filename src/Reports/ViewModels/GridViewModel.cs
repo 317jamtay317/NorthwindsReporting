@@ -1,17 +1,15 @@
-﻿using Shared;
+﻿using Prism.Regions;
+using Shared;
 using Shared.Mvvm;
 
 namespace Reports.ViewModels;
 
-public class GridViewModel : ViewModelBase, ITabView
+public class GridViewModel : TabItemViewModelBase
 {
-    public GridViewModel()
+    public GridViewModel(IRegionManager regionManager) 
+        :base(regionManager)
     {
         Header = "Grid";
     }
-    public string? Header
-    {
-        get => GetValue<string>();
-        set => SetValue(value);
-    }
+    
 }

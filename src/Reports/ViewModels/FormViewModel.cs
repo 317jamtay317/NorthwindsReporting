@@ -1,17 +1,14 @@
+using Prism.Regions;
 using Shared;
 using Shared.Mvvm;
 
 namespace Reports.ViewModels;
 
-public class FormViewModel : ViewModelBase, ITabView
+public class FormViewModel : TabItemViewModelBase
 {
-    public FormViewModel()
+    public FormViewModel(IRegionManager regionManager)
+        : base(regionManager)
     {
         Header = "Form View";
-    }
-    public string? Header
-    {
-        get => GetValue<string>();
-        set => SetValue(value);
     }
 }

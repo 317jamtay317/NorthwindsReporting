@@ -50,8 +50,11 @@
                 MouseLeftButtonDown="HandleLeftMouseButtonUp"
                 Height="{Binding ElementName=root, Path=IconSize}"
                 Width="{Binding ElementName=root, Path=IconSize}"
+                ToolTip="{Binding ElementName=root, Path=Label}"
                 VerticalAlignment="Center"/>
-            <TextBlock Margin="10 0 0 0" Text="Configure"
+            <TextBlock 
+                Margin="10 0 0 0" 
+                Text="{Binding ElementName=root, Path=Label}"
                 MouseLeftButtonDown="HandleLeftMouseButtonUp"
                 Visibility="{Binding ElementName=root, Path=LabelVisibility}"
                 VerticalAlignment="Center"

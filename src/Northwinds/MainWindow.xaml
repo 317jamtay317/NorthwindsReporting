@@ -18,7 +18,7 @@
         xmlns:shared="clr-namespace:Shared;assembly=Shared"
         xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
         WindowStyle="None"
-        x:Name="root"
+        x:Name="Root"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Padding="0">
     <b:Interaction.Triggers>
@@ -43,6 +43,8 @@
                         Style="{StaticResource CloseButtonStyle}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
+                        Command="{Binding DataContext.RemoveCommand}"
+                        CommandParameter="{Binding DataContext}"
                         Margin="20 0 0 0"
                         HorizontalAlignment="Right" />
                 </Grid>
@@ -59,7 +61,7 @@
                 MinHeight="30"
                 Background="{DynamicResource PrimaryHueLightBrush}">
             <Grid>
-                <TextBlock Text="{Binding ElementName=root, Path=Title}"
+                <TextBlock Text="{Binding ElementName=Root, Path=Title}"
                            HorizontalAlignment="Left"
                            Foreground="{DynamicResource SecondaryHueLightForegroundBrush}"
                            Margin="10 0 0 0"

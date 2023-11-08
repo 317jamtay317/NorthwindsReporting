@@ -13,8 +13,6 @@
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
              x:Name="root"
-             MouseEnter="HanldeMouseChange"
-             MouseLeave="HanldeMouseChange"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -51,7 +49,7 @@
                 Width="35" />
             <ToggleButton
                 Style="{StaticResource PinButton}"
-                IsChecked="{Binding ElementName=root, Path=IsExpanded, Mode=TwoWay}"
+                IsChecked="{Binding ElementName=root, Path=Pinned, Mode=TwoWay}"
                 Foreground="White"
                 Height="15"
                 Visibility="{Binding ElementName=root, Path=IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
