@@ -18,8 +18,8 @@ namespace DAL.Repositories.StoredQueries
         {
             using var connection = await ConnectionFactory.CreateAsync();
             var sql = @$"INSERT INTO {TableName}(Name, Sql)
-                        OUTPUT INSERTED.Id
-                        VALUES (@Name, @Sql)";
+                        VALUES (@Name, @Sql);
+                        SELECT last_insert_rowid();";
             storedQuery.Id = await connection.QuerySingleAsync<int>(sql, storedQuery);
 
             return storedQuery.Id > 0;

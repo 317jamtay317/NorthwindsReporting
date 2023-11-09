@@ -1,7 +1,4 @@
-﻿using System.Data;
-using DAL.Connection;
-using DAL.Repositories.Base;
-using Dapper;
+﻿using DAL.Repositories.Base;
 using Models;
 
 namespace DAL.Repositories.Reports;
@@ -22,42 +19,24 @@ public interface IReportsRepository : IRepository<Report>
     /// Deletes the associated report in the database
     /// </summary>
     public Task<bool> Delete(int id);
-}
 
-internal class ReportRepository : RepositoryBase<Report>, IReportsRepository
-{
-    public ReportRepository(IConnectionFactory connectionFactory) : base(connectionFactory)
-    {
-    }
+    /// <summary>
+    /// Returns all of the fields associated with that report
+    /// </summary>
+    public Task<IEnumerable<ReportField>> GetFields(int reportId);
 
-    protected override string TableName => "ReportDefinitions";
+    /// <summary>
+    /// Creates a new field int the database for the passed in report Id
+    /// </summary>
+    public Task<bool> CreateField(int reportId, ReportField  field);
 
-    public override async Task<Report> GetById(int id)
-    {
-        using var connection = await ConnectionFactory.CreateAsync();
-        var sql = $"SELECT * FROM {TableName} WHERE Id = @Id";
-        var report = await connection.QuerySingleAsync<Report>(sql, new { Id = id });
-        var fields = await connection
-            .QueryAsync<ReportField>(
-                "SELECT * FROM ReportFields WHERE ReportId = @reportId",
-                new { reportId = id });
-        report.Fields = fields;
-        return report;
-    }
+    /// <summary>
+    /// Updates the field in the database with the new values
+    /// </summary>
+    public Task<bool> UpdateField(int fieldId, ReportField field);
 
-    public async Task<bool> Create(Report report)
-    {
-        using var connection = await ConnectionFactory.CreateAsync();
-        var sql = $@"INSERT INTO {TableName}(Name, Description, ReportType, QueryId) "
-    }
-
-    public Task<bool> Update(Report report)
-    {
-       throw new RowNotInTableException();
-    }
-
-    public Task<bool> Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
+    /// <summary>
+    /// Deletes the field from the database
+    /// </summary>
+    public Task<bool> DeleteField(int fieldId);
 }
