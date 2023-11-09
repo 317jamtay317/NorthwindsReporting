@@ -39,4 +39,6 @@ public interface IReportsRepository : IRepository<Report>
     /// Deletes the field from the database
     /// </summary>
     public Task<bool> DeleteField(int fieldId);
+
+    
 }

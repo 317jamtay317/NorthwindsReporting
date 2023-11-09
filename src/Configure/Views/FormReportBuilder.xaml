@@ -7,7 +7,6 @@
              xmlns:behaviors="clr-namespace:Shared.Mvvm.Behaviors;assembly=Shared"
              xmlns:viewModels="clr-namespace:Configure.ViewModels"
              xmlns:prism="http://prismlibrary.com/"
-             xmlns:theme="clr-namespace:Theme;assembly=Theme"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"

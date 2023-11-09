@@ -18,6 +18,7 @@ namespace Configure.ViewModels
         {
             _storedQueryRepository = storedQueryRepository;
             _regionManager = regionManager;
+            _reportsRepository = reportsRepository;
             NavigateCommand =
                 new DelegateCommand<string>((view) => _regionManager.RequestNavigate(Regions.ConfigureRegion, view));
         }
@@ -45,5 +46,6 @@ namespace Configure.ViewModels
 
         private readonly IStoredQueryRepository _storedQueryRepository;
         private readonly IRegionManager _regionManager;
+        private readonly IReportsRepository _reportsRepository;
     }
 }
